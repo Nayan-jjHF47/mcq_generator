@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MCQ Generator</title>
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%), url("/static/img/1.jpg");
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .content {
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-top: 125px;
+        }
+
+        .form {
+            width: 300px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .form h2 {
+            color: #ff7200;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ff7200;
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .form input:focus {
+            outline: none;
+            border-color: #fff;
+        }
+
+        .form button {
+            width: 100%;
+            padding: 10px;
+            background: #ff7200;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form button:hover {
+            background: #e46000;
+        }
+
+        .form .link {
+            font-size: 16px;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .form .link a {
+            color: #ff7200;
+            text-decoration: none;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #222;
+            color: #f3f3f3;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer .footer-content h3 {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        footer .footer-content .socials {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        footer .footer-content .socials li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer .footer-content .socials a {
+            color: #fff;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-content .socials a:hover {
+            color: #f4a261;
+        }
+
+        footer .footer-bottom {
+            padding-top: 10px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .flash-messages {
+            padding: 10px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .flash-message.success {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+        .flash-message.error {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<!-- Flash messages display section -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}
+<div class="main">
+    <div class="content">
+        <div class="form-container">
+            <div class="form">
+                <h2>Login Here</h2>
+                <form action="{{ url_for('login') }}" method="POST">
+                    <input type="text" name="username" placeholder="Enter Username Here" required>
+                    <input type="password" name="password" placeholder="Enter Password Here" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p class="link">Don't have an account?<br><a href="{{ url_for('signup') }}">Sign up here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>QuickQ</h3>
+            <p>Quick and easy MCQ generation platform for effective learning and teaching.</p>
+            <ul class="socials">
+                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-google"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            </ul>
+            <div class="footer-bottom"><p>&copy; 2024 QuickQ. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js">
+    // Automatically hide flash messages after 3 seconds
+
+    setTimeout(function() {
+        const flashMessages = document.querySelector('.flash-messages');
+        if (flashMessages) {
+            flashMessages.style.transition = 'opacity 0.5s ease';
+            flashMessages.style.opacity = '0';
+            setTimeout(() => flashMessages.remove(), 500); // Fully remove after fade out
+        }
+    }, 3000); // Adjust timing as needed
+
+
+
+    </script>
+</body>
+</html>

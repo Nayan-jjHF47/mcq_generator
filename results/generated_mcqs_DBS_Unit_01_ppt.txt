@@ -1,0 +1,50 @@
+## MCQ 1
+Question: What does the term "raw data" refer to in the context of databases?
+A) Processed information ready for interpretation
+B) Unprocessed facts that haven't yet revealed their meaning
+C) Data structured in tables and views
+D)  Data that has been validated using integrity constraints
+
+Correct Answer: B
+Bloom's level: Remember
+
+## MCQ 2
+Question:  Which of the following is NOT a core function of a Database Management System (DBMS)?
+A) Defining the data structure
+B) Manipulating the data
+C) Generating reports directly for end-users without any queries
+D) Managing data retrieval
+
+Correct Answer: C
+Bloom's level: Understand
+
+## MCQ 3
+Question:  A database system where all components, including the interface, middleware, and back-end data, reside on a single server is an example of what architecture?
+A) One-tier architecture
+B) Two-tier architecture
+C) Three-tier architecture
+D) Distributed architecture
+
+Correct Answer: A
+Bloom's level: Apply
+
+## MCQ 4
+Question:  Logical data independence allows changes to be made at the conceptual level without affecting which level?
+A) Physical level
+B) External (view) level
+C) Storage level
+D) Hardware level
+
+Correct Answer: B
+Bloom's level: Analyze
+
+
+## MCQ 5
+Question: Which integrity constraint ensures that a primary key value cannot be null and must be unique?
+A) Domain constraint
+B) Entity constraint
+C) Referential integrity
+D)  Data validation constraint
+
+Correct Answer: B
+Bloom's level: Remember

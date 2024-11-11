@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #f5f5f5;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%),
+                        url('https://images.unsplash.com/photo-1419640303358-44f0d27f48e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fHw%3D');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container {
+            width: 50%;
+            max-width: 500px;
+            background-color: rgba(22, 33, 62, 0.6); /* Adjusted transparency */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            color: #e94560;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1em;
+            color: #a6a6a6;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #4e4e50;
+            background-color: #1b1b2f;
+            color: #f5f5f5;
+        }
+
+        input[type="file"]::file-selector-button {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            background-color: #e94560;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #d73752;
+        }
+
+        .mcq {
+            background-color: #1b1b2f;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .mcq p {
+            font-size: 1em;
+            color: #f5f5f5;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #1f4068;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #1b4d89;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generate MCQs from Your Text</h1>
+        <form action="{{ url_for('mcq') }}" method="POST" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="file">Upload your document (PDF, TXT, DOCX):</label>
+                <input type="file" name="file" required>
+            </div>
+            <div class="form-group">
+                <label for="num_questions">How many questions do you want?</label>
+                <input type="number" name="num_questions" min="1" required>
+            </div>
+            <button type="submit">Generate MCQs</button>
+        </form>
+    </div>
+</body>
+</html>
